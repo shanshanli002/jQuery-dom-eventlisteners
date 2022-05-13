@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Ratings</title>
+</head>
+<style>
+    body{
+        width: 90vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    h1{
+        font-size: 5vh;
+    }
+</style>
+<body>
+    <h1>Movie Ratings</h1>
+    <h2>Rate New Movie</h2>
+    <form action="">
+        <input id="title" type="text" >
+        <input id="rating" type="number" min="0" max="10">
+        <button id="submit" type="submit">submit</button>
+    </form>
+
+    <div id="movies">
+        <h2>All Movies</h2>
+        <ul id="movieslist">
+
+        </ul>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script>
+$('#submit').on('click', function(){
+    event.preventDefault();
+    let movieTitle = $('#title').val();
+    if(movieTitle.length <2){
+        alert('movie title should be at least 2 characters');
+    } else{
+        let movieRating = $('#rating').val();
+        let newMovie = $('<li>').text(`${movieTitle} ${movieRating}`).append('<button id="delete"> delete </button>');
+        $('#movieslist').append(newMovie);
+    } 
+});
+
+$('#movies').on('click','#delete', function(){
+    $(this).parent().remove();
+});
+</script>
+</html>
